@@ -1,9 +1,7 @@
-import cv2
-import numpy as np
 import pytesseract
 from PIL import Image
+import cv2
 from transformers import MarianMTModel, MarianTokenizer
-
 
 # Model ve Tokenizer yükleme
 model_name = "Helsinki-NLP/opus-tatoeba-en-tr"
@@ -36,17 +34,14 @@ def translate(text, tokenizer, model):
     translated_text = tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
     return translated_text
 
-# Örnek bir resim dosyasını işleme
-if __name__ == "__main__":
-    image_path = "Truthfulness Example - Fınal Outcome.png"  # Resim dosyasının yolu
-    extracted_text = process_image(image_path)
 
-    print("Çıkarılan Metin:")
-    print(extracted_text)
+image_path = "Truthfulness.png"  # Resim dosyasının yolu
+extracted_text = process_image(image_path)
 
-    translated_text = translate(extracted_text, tokenizer, model)
-    print("Çevrilen Metin:")
-    print(translated_text)
+print("Çıkarılan Metin:")
+print(extracted_text)
 
-
+translated_text = translate(extracted_text,tokenizer, model)
+print("Çevrilen Metin:")
+print(translated_text)
 
